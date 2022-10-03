@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
+    [SerializeField] private Energy energy;
+    
+    
     [Header("Movement")]
     public float moveSpeed;
-
     public float groundDrag;
 
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
+
+    private Vector3 oldPosition; 
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
@@ -32,7 +36,12 @@ public class PlayerMovment : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    private bool enabled = false;
 
+    public void enableDisable(bool enable)
+    {
+        enabled = enable;
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,38 +54,54 @@ public class PlayerMovment : MonoBehaviour
 
     private void Update()
     {
-        
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        if (enabled)
+        {
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        MyInput();
-        SpeedControl();
+            MyInput();
+            SpeedControl();
 
         
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+            if (grounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0;
+        }
+           
+        
+        
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (enabled)
+        {
+            MovePlayer();
+            if (oldPosition != transform.position)
+                energy.TakeExhaust(0.40f);
+            oldPosition = transform.position;
+        }
+        
     }
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (enabled)
+        {
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
 
         
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
-            readyToJump = false;
+            if(Input.GetKey(jumpKey) && readyToJump && grounded)
+            {
+                readyToJump = false;
 
-            Jump();
+                Jump();
 
-            Invoke(nameof(ResetJump), jumpCooldown);
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
         }
+        
     }
 
     private void MovePlayer()
@@ -91,6 +116,8 @@ public class PlayerMovment : MonoBehaviour
       
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        
+        
     }
 
     private void SpeedControl()

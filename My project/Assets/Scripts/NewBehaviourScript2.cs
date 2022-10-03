@@ -19,20 +19,29 @@ public class NewBehaviourScript2 : MonoBehaviour
       Cursor.visible = false;
       
   }
+  private bool enabled = false;
 
+  public void enableDisable(bool enable)
+  {
+      enabled = enable;
+  }
   private void Update()
   {
-      float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-      float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensX;
-
-      yRotation += mouseX;
-
-      xRotation -= mouseY;
-
-      xRotation = Math.Clamp(xRotation, -90f, 90f);
+      if (enabled)
+      {
+          float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+                float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensX;
+          
+                yRotation += mouseX;
+          
+                xRotation -= mouseY;
+          
+                xRotation = Math.Clamp(xRotation, -90f, 90f);
+                
+                transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+                orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+      }
       
-      transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-      orientation.rotation = Quaternion.Euler(0, yRotation, 0);
       
   }
 } 
