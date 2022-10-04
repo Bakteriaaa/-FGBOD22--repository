@@ -70,7 +70,7 @@ public class Rzucannie : MonoBehaviour
             forceDirection = (hit.point - attackPoint.position).normalized;
             
         }
-        randomForce = new Vector3(Random.Range(-6.55f,6.55f),Random.Range(-6.55f,6.55f),Random.Range(-6.55f,6.55f));
+        randomForce = new Vector3(Random.Range(-4.55f,4.55f),Random.Range(-4.55f,4.55f),Random.Range(-4.55f,4.55f));
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce + randomForce;
         
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);

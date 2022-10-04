@@ -1,4 +1,6 @@
 
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class NewBehaviourScript1 : MonoBehaviour
@@ -26,14 +28,16 @@ public class NewBehaviourScript1 : MonoBehaviour
 
             enemy.TakeDamage(damage);
             
-            Destroy(gameObject);
+            
         }
         
-        
+        targetHit = true;
+        rb.isKinematic = true;
+        transform.SetParent(collision.transform);
+
+        Destroy(rb);
             
-            targetHit = true;
-           rb.isKinematic = true;
-            transform.SetParent(collision.transform);
+            
         
             Debug.Log("colision detected");
     }
