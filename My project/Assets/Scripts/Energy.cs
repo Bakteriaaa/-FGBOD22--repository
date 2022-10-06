@@ -23,7 +23,7 @@ public class Energy : MonoBehaviour
         curEnergy -= Exhaust;
         if (curEnergy <= 0)
         {
-            turnManagerScript.nextTurn();
+            turnManagerScript.nextTurnWait();
             curEnergy = maxEnergy;
         }
         

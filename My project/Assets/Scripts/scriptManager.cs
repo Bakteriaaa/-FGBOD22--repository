@@ -6,6 +6,7 @@ public class scriptManager : MonoBehaviour
 {
     // Start is called before the first frame update
     private bool selected = false;
+    private bool waiting = false;
     [SerializeField] private GameObject player;
     private BasicEnemy enemyScript;
     private Shovel shovelScript;
@@ -18,6 +19,10 @@ public class scriptManager : MonoBehaviour
     {
         selected = sel;
         
+    }
+    public void waitingForTurn(bool wal)
+    {
+        waiting = wal;
     }
     void Start()
     {
@@ -32,23 +37,26 @@ public class scriptManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (selected)
+        if (!waiting && selected)
         {
 
             camera.enabled =true;
             movementScript.enableDisable(true);
             camScript.enableDisable(true);
             throwScript.enableDisable(true);
-            
+            shovelScript.enableDisable(true);
         }
         else
         {
-
-            camera.enabled = false;
+            if (!selected)
+            {
+                waiting = false;
+                camera.enabled = false;
+            }
             movementScript.enableDisable(false);
             camScript.enableDisable(false);
             throwScript.enableDisable(false);
-            
+            shovelScript.enableDisable(false);
         }
     }
 }
