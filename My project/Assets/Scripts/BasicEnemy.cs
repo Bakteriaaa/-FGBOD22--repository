@@ -9,7 +9,7 @@ public class BasicEnemy: MonoBehaviour
   public int maxHealth;
   public Healthbar healthbar;
   public int curHealth;
-  //[SerializeField] GameObject endscreen;
+  
     
   
   void Start()

@@ -14,6 +14,7 @@ public class scriptManager : MonoBehaviour
     private PlayerMovment movementScript;
     private Energy energyScript;
     private NewBehaviourScript2 camScript;
+    private Scizors scissorscript;
    [SerializeField] private Camera camera;
     public void Selected(bool sel)
     {
@@ -32,6 +33,7 @@ public class scriptManager : MonoBehaviour
         movementScript = player.GetComponent<PlayerMovment>();
         energyScript = player.GetComponent<Energy>();
         camScript = camera.GetComponent<NewBehaviourScript2>();
+        scissorscript = player.GetComponent<Scizors>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class scriptManager : MonoBehaviour
             camScript.enableDisable(true);
             throwScript.enableDisable(true);
             shovelScript.enableDisable(true);
+            scissorscript.enableDisable(true);
         }
         else
         {
@@ -57,6 +60,7 @@ public class scriptManager : MonoBehaviour
             camScript.enableDisable(false);
             throwScript.enableDisable(false);
             shovelScript.enableDisable(false);
+            scissorscript.enableDisable(false);
         }
     }
 }

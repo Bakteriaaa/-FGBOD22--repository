@@ -9,10 +9,12 @@ public class NewBehaviourScript1 : MonoBehaviour
     
     private Rigidbody rb;
     private bool targetHit;
+    
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)

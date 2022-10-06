@@ -8,6 +8,7 @@ public class BobRotationScript2 : MonoBehaviour
     void Update()
     {
         Vector3 temp = cameraBoba.transform.localRotation.eulerAngles;
-        gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(-88, -197, 196
+        ));
     }
 }
