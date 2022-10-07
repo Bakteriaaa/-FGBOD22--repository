@@ -10,7 +10,7 @@ public class FireDamage : MonoBehaviour
         {
 
             BasicEnemy target = other.gameObject.GetComponent<BasicEnemy>();
-            target.curHealth -= 3;
+            target.curHealth -= 12;
             target.healthbar.UpdateHealt((float)target.curHealth/(float)target.maxHealth);
 
 

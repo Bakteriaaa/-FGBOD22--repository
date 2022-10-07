@@ -13,7 +13,7 @@ public class scriptManager : MonoBehaviour
     private Rzucannie throwScript;
     private PlayerMovment movementScript;
     private Energy energyScript;
-    private NewBehaviourScript2 camScript;
+    private MauseControler camScript;
     private Scizors scissorscript;
    [SerializeField] private Camera camera;
     public void Selected(bool sel)
@@ -32,7 +32,7 @@ public class scriptManager : MonoBehaviour
         throwScript = player.GetComponent<Rzucannie>();
         movementScript = player.GetComponent<PlayerMovment>();
         energyScript = player.GetComponent<Energy>();
-        camScript = camera.GetComponent<NewBehaviourScript2>();
+        camScript = camera.GetComponent<MauseControler>();
         scissorscript = player.GetComponent<Scizors>();
     }
 

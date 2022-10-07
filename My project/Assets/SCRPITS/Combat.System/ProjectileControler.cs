@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class NewBehaviourScript1 : MonoBehaviour
+public class ProjectileControler : MonoBehaviour
 {
     public int damage;
     
